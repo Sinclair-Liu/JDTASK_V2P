@@ -25,7 +25,7 @@ class Widget {
       cookie: $store.get('CookiesJDV2P'),
       userName: '',  // 设置显示的用户名，如果为空将使用京东默认昵称代替
     };
-    this.rangeDay = 7;   // 天数范围配置
+    this.rangeDay = 1;   // 天数范围配置
     this.cache = false;   // true: 只在每天首次运行时请求新的数据。 false: 每次运行都获取最新数据
     this.notify = true;  // 是否发送通知
   }
