@@ -246,23 +246,23 @@ class Widget {
     }
   }
 
-  // createChart = async () => {
-  //   let labels = [],
-  //       data = [], data2 = [];
-  //   Object.keys(this.rangeTimer).forEach((month) => {
-  //     const value = this.rangeTimer[month];
-  //     const arrMonth = month.split("-");
-  //     labels.push(`${arrMonth[1]}.${arrMonth[2]}`);
-  //     data.push(value);
-  //     data2.push(this.rangeTimerd[month])
-  //   });
-  //   this.beanChange.push(data)
-  //   this.beanChange.push(data2)
-  //   const chartStr = this.chartConfig(labels, data, data2);
-  //   console.debug(chartStr);
+  createChart = async () => {
+    let labels = [],
+        data = [], data2 = [];
+    Object.keys(this.rangeTimer).forEach((month) => {
+      const value = this.rangeTimer[month];
+      const arrMonth = month.split("-");
+      labels.push(`${arrMonth[1]}.${arrMonth[2]}`);
+      data.push(value);
+      data2.push(this.rangeTimerd[month])
+    });
+    this.beanChange.push(data)
+    this.beanChange.push(data2)
+    const chartStr = this.chartConfig(labels, data, data2);
+    console.debug(chartStr);
 
-  //   return await this.chartUrl(chartStr)
-  // };
+    return "www.baidu.com"
+  };
 
   // chartUrl = async (data) => {
   //   const req = {
@@ -317,7 +317,7 @@ class Widget {
         today = new Date().getDay()
     const eDou = new Widget()
       await eDou.init(k)
-      // let res = await eDou.createChart()
+      let res = await eDou.createChart()
       // let data = res.data
       // if (data && data.success) {
         evdou = {
