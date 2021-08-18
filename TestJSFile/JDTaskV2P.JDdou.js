@@ -246,41 +246,41 @@ class Widget {
     }
   }
 
-  createChart = async () => {
-    let labels = [],
-        data = [], data2 = [];
-    Object.keys(this.rangeTimer).forEach((month) => {
-      const value = this.rangeTimer[month];
-      const arrMonth = month.split("-");
-      labels.push(`${arrMonth[1]}.${arrMonth[2]}`);
-      data.push(value);
-      data2.push(this.rangeTimerd[month])
-    });
-    this.beanChange.push(data)
-    this.beanChange.push(data2)
-    const chartStr = this.chartConfig(labels, data, data2);
-    console.debug(chartStr);
+  // createChart = async () => {
+  //   let labels = [],
+  //       data = [], data2 = [];
+  //   Object.keys(this.rangeTimer).forEach((month) => {
+  //     const value = this.rangeTimer[month];
+  //     const arrMonth = month.split("-");
+  //     labels.push(`${arrMonth[1]}.${arrMonth[2]}`);
+  //     data.push(value);
+  //     data2.push(this.rangeTimerd[month])
+  //   });
+  //   this.beanChange.push(data)
+  //   this.beanChange.push(data2)
+  //   const chartStr = this.chartConfig(labels, data, data2);
+  //   console.debug(chartStr);
 
-    return await this.chartUrl(chartStr)
-  };
+  //   return await this.chartUrl(chartStr)
+  // };
 
-  chartUrl = async (data) => {
-    const req = {
-      url: 'https://quickchart.io/chart/create',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'post',
-      data: {
-        "backgroundColor": "transparent",
-        "width": 580,
-        "height": 320,
-        "format": "png",
-        "chart": data
-      }
-    }
-    return await $axios(req)
-  }
+  // chartUrl = async (data) => {
+  //   const req = {
+  //     url: 'https://quickchart.io/chart/create',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     method: 'post',
+  //     data: {
+  //       "backgroundColor": "transparent",
+  //       "width": 580,
+  //       "height": 320,
+  //       "format": "png",
+  //       "chart": data
+  //     }
+  //   }
+  //   return await $axios(req)
+  // }
 }
 
 !(async ()=>{
@@ -317,22 +317,22 @@ class Widget {
         today = new Date().getDay()
     const eDou = new Widget()
       await eDou.init(k)
-      let res = await eDou.createChart()
-      let data = res.data
-      if (data && data.success) {
+      // let res = await eDou.createChart()
+      // let data = res.data
+      // if (data && data.success) {
         evdou = {
           day: today,
           userName: eDou.JDCookie.userName,
           total: eDou.beanCount,
           change: eDou.beanChange,
-          imgurl: data.url,
+          // imgurl: data.url,
         }
-        $store.put(evdou, 'evdou')
-      } else {
-        console.log(data)
-      }
+      //   $store.put(evdou, 'evdou')
+      // } else {
+      //   console.log(data)
+      // }
 
-    if (evdou.imgurl) {
+    // if (evdou.imgurl) {
       // showChart(evdou.imgurl, evdou.userName, evdou.total, eDou.name)
       if (eDou.notify) {
         let body = evdou.userName + ': ' + evdou.total
@@ -344,8 +344,8 @@ class Widget {
         // $feed.push(eDou.name + `${k+1}`,evdou.imgurl)
 
       }
-    }
-    $.evdouImgUrl = evdou.imgurl
+    // }
+    // $.evdouImgUrl = evdou.imgurl
     await showMsg();
     await $.wait(2000)
 ////////////////////////////////////////////////
@@ -371,7 +371,7 @@ async function showMsg() {
   // if ($.isNode()) {
   //   await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName}`, `账号${$.index}：${$.nickName || $.UserName}\n昨日收入：${$.incomeBean}京豆 \n昨日支出：${$.expenseBean}京豆 \n当前京豆：${$.beanCount}京豆 ${$.message}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
   // }
-  $.msg($.name, '', `账号${$.index}：${$.nickName || $.UserName}\n今日收入：${$.todayIncomeBean}京豆 \n昨日收入：${$.incomeBean}京豆 \n昨日支出：${$.expenseBean}京豆 \n当前京豆：${$.beanCount}(七天将过期${$.expirejingdou})京豆${$.message}`, $.evdouImgUrl);
+  $.msg($.name, '', `账号${$.index}：${$.nickName || $.UserName}\n今日收入：${$.todayIncomeBean}京豆 \n昨日收入：${$.incomeBean}京豆 \n昨日支出：${$.expenseBean}京豆 \n当前京豆：${$.beanCount}(七天将过期${$.expirejingdou})京豆${$.message}`);
 }
 async function bean() {
   // console.log(`北京时间零点时间戳:${parseInt((Date.now() + 28800000) / 86400000) * 86400000 - 28800000}`);
